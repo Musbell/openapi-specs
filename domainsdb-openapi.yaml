@@ -113,7 +113,7 @@ paths:
             type: string
       tags:
         - info/
-  /info/stat/:
+  /info/stat:
     get:
       description: Retrieve overall statistics for all zones, including total records and changes over time.
       responses:
@@ -176,7 +176,7 @@ paths:
             default: 50
       tags:
         - info/
-  /info/tld/:
+  /info/tld:
     get:
       responses:
         '200':
@@ -227,23 +227,12 @@ paths:
             default: 50
       tags:
         - info/
-info:
-  title: Domains-Index API
-  version: '1.0'
-  description: Domains-Index database powered API
 tags:
-  - name: default
-    description: Default namespace
   - name: info/
     description: TLD Statistics
   - name: domains/
     description: Domains Database
 components:
-  responses:
-    ParseError:
-      description: When a mask can't be parsed
-    MaskError:
-      description: When any error occurs on mask
   schemas:
     Domains:
       properties:
