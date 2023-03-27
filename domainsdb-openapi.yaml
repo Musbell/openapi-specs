@@ -4,7 +4,11 @@ servers:
 info:
   title: Domains-Index API
   version: '1.0'
-  description: The Domains-Index API provides access to a database of domain names, including domain details, TLD statistics, and zone information.
+  description: |
+     The Domains-Index API provides access to a database of domain names, including domain details, TLD statistics, and zone information.
+      ### Parameters
+      - page: The page parameter is used to retrieve paginated results.
+      - limit: The limit parameter is used to specify the maximum number of results to return per page.
   contact:
     name: Domains-Index
     url: 'https://domainsdb.info'
@@ -31,12 +35,10 @@ paths:
             type: string
         - name: page    
           in: query
-          description: The page number to retrieve in paginated results.
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to return per page.
           schema:
             type: integer
             default: 50
@@ -104,12 +106,10 @@ paths:
       parameters:
         - name: page
           in: query
-          description: The page number to retrieve in paginated results.
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to return per page.
           schema:
             type: integer
             default: 50
@@ -139,12 +139,10 @@ paths:
       parameters:
         - name: page
           in: query
-          description: The page number to retrieve in paginated results.
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to return per page.
           schema:
             type: integer
             default: 50
@@ -190,12 +188,10 @@ paths:
       parameters:
         - name: page
           in: query
-          description: The page number to retrieve in paginated results.
           schema:
             type: string
         - name: limit
           in: query
-          description: The maximum number of results to return per page.
           schema:
             type: integer
             default: 50
