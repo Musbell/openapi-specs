@@ -19,18 +19,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Search_Results'
-        '403':
-          description: api_key is not valid
         '404':
           description: Results not found
       summary: Domains Database Search
       operationId: get_domains_search
       parameters:
-        - name: api_key
-          in: query
-          description: Your API key for authentication.
-          schema:
-            type: string
         - name: date
           in: query
           description: Filter domains by creation or update date.
@@ -94,25 +87,6 @@ paths:
             type: string
       tags:
         - domains/
-  /info/api:
-    get:
-      description: Get information about the provided API key, including license details and expiration date.
-      responses:
-        '200':
-          description: Success
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/API_Key_Info'
-      operationId: get_info_api
-      parameters:
-        - name: api_key
-          in: query
-          description: Your API key for authentication.
-          schema:
-            type: string
-      tags:
-        - info/
   /info/stat:
     get:
       description: Retrieve overall statistics for all zones, including total records and changes over time.
@@ -352,36 +326,6 @@ components:
           items:
             type: string
             description: Sub TLDs included
-      type: object
-    API_Key_Info:
-      properties:
-        success:
-          type: string
-          description: State
-        license:
-          type: string
-          description: State
-        item_id:
-          type: string
-          description: State
-        item_name:
-          type: string
-          description: State
-        expires:
-          type: string
-          description: State
-        customer_name:
-          type: string
-          description: State
-        customer_email:
-          type: string
-          description: State
-        license_limit:
-          type: string
-          description: State
-        price_id:
-          type: string
-          description: State
       type: object
     Search_Results:
       allOf:
