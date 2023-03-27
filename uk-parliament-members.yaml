@@ -14,7 +14,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Returns a list of current members of the Commons or Lords
+      description: Returns a list of current members of the Commons or Lords
+      operationId: getListOfCurrentMembers
       parameters:
         - name: Name
           in: query
@@ -112,7 +113,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Returns a list of members of the Commons or Lords
+      description: Returns a list of members of the Commons or Lords
+      operationId: getListOfAllMembers
       parameters:
         - name: name
           in: query
@@ -159,7 +161,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return member by ID
+      description: Return member by ID
+      operationId: getMemberById
       parameters:
         - name: id
           in: path
@@ -195,7 +198,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return biography of member by ID
+      description: Return biography of member by ID
+      operationId: getBiographyByMemberId
       parameters:
         - name: id
           in: path
@@ -225,7 +229,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of contact details of member by ID
+      description: Return list of contact details of member by ID
+      operationId: getListOfContactDetailsByMemberId
       parameters:
         - name: id
           in: path
@@ -255,7 +260,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return contribution summary of member by ID
+      description: Return contribution summary of member by ID
+      operationId: getContributionSummaryByMemberId
       parameters:
         - name: id
           in: path
@@ -290,7 +296,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of early day motions of member by ID
+      description: Return list of early day motions of member by ID
+      operationId: getEarlyDaysMotionsByMemberId
       parameters:
         - name: id
           in: path
@@ -325,7 +332,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return experience of member by ID
+      description: Return experience of member by ID
+      operationId: getMemberExperienceByMemberId
       parameters:
         - name: id
           in: path
@@ -355,7 +363,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of areas of focus of member by ID
+      description: Return list of areas of focus of member by ID
+      operationId: getMemberFocusAreaByMemberId
       parameters:
         - name: id
           in: path
@@ -385,7 +394,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return members by ID with list of their historical names, parties and memberships
+      description: Return members by ID with list of their historical names, parties and memberships
+      operationId: getMembersByIdWithHistory
       parameters:
         - name: ids
           in: query
@@ -423,7 +433,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return latest election result of member by ID
+      description: Return latest election result of member by ID
+      operationId: getLatestElectionResultByMemberId
       parameters:
         - name: id
           in: path
@@ -453,7 +464,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of registered interests of member by ID
+      description: Return list of registered interests of member by ID
+      operationId: getRegisteredInterestsByMemberId
       parameters:
         - name: id
           in: path
@@ -488,7 +500,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of staff of member by ID
+      description: Return list of staff of member by ID
+      operationId: getMemberStaffListById
       parameters:
         - name: id
           in: path
@@ -518,7 +531,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return synopsis of member by ID
+      description: Return synopsis of member by ID
+      operationId: getMemberSynopsisById
       parameters:
         - name: id
           in: path
@@ -548,7 +562,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of votes by member by ID
+      description: Return list of votes by member by ID
+      operationId: getMemberVotesListById
       parameters:
         - name: id
           in: path
@@ -588,7 +603,8 @@ paths:
     get:
       tags:
         - Members
-      summary: Return list of written questions by member by ID
+      description: Return list of written questions by member by ID
+      operationId: getWrittenQuestionsByMemberId
       parameters:
         - name: id
           in: path
@@ -623,7 +639,8 @@ paths:
     get:
       tags:
         - Parties
-      summary: Returns current state of parties
+      description: Returns current state of parties
+      operationId: getCurrentPartyStates
       parameters:
         - name: house
           in: path
@@ -657,7 +674,8 @@ paths:
     get:
       tags:
         - Parties
-      summary: Returns the composition of the House of Lords by peerage type.
+      description: Returns the composition of the House of Lords by peerage type.
+      operationId: getHouseOfLordsCompositionByPeerageType
       parameters:
         - name: forDate
           in: path
@@ -685,7 +703,8 @@ paths:
     get:
       tags:
         - Parties
-      summary: Returns a list of current parties with at least one active member.
+      description: Returns a list of current parties with at least one active member.
+      operationId: getCurrentPartiesWithActiveMembers
       parameters:
         - name: house
           in: path
@@ -708,6 +727,9 @@ paths:
                 $ref: "#/components/schemas/PartyMembersServiceSearchResult"
         "400":
           description: Bad Request
+tags:
+  - name: Members
+  - name: Parties
 components:
   schemas:
     AnsweringBody:
@@ -800,84 +822,6 @@ components:
           nullable: true
         additionalInfoLink:
           type: string
-          nullable: true
-      additionalProperties: false
-    Constituency:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-          nullable: true
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-          nullable: true
-        currentRepresentation:
-          $ref: "#/components/schemas/ConstituencyRepresentation"
-      additionalProperties: false
-    ConstituencyItem:
-      type: object
-      properties:
-        value:
-          $ref: "#/components/schemas/Constituency"
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
-    ConstituencyMembersServiceSearchResult:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: "#/components/schemas/ConstituencyItem"
-          nullable: true
-        totalResults:
-          type: integer
-          format: int32
-        resultContext:
-          type: string
-          nullable: true
-        skip:
-          type: integer
-          format: int32
-        take:
-          type: integer
-          format: int32
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
-    ConstituencyRepresentation:
-      type: object
-      properties:
-        member:
-          $ref: "#/components/schemas/MemberItem"
-        representation:
-          $ref: "#/components/schemas/HouseMembership"
-      additionalProperties: false
-    ConstituencyRepresentationListItem:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: "#/components/schemas/ConstituencyRepresentation"
-          nullable: true
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
           nullable: true
       additionalProperties: false
     ContactInformation:
@@ -1165,16 +1109,6 @@ components:
             $ref: "#/components/schemas/Link"
           nullable: true
       additionalProperties: false
-    GenericReferenceData:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        description:
-          type: string
-          nullable: true
-      additionalProperties: false
     GovernmentDepartment:
       type: object
       properties:
@@ -1189,66 +1123,6 @@ components:
           nullable: true
         imageUrl:
           type: string
-          nullable: true
-      additionalProperties: false
-    GovernmentOppositionPost:
-      type: object
-      properties:
-        type:
-          $ref: "#/components/schemas/PostType"
-        name:
-          type: string
-          nullable: true
-        hansardName:
-          type: string
-          nullable: true
-        id:
-          type: integer
-          format: int32
-        postHolders:
-          type: array
-          items:
-            $ref: "#/components/schemas/GovernmentOppositionPostHolder"
-          nullable: true
-        governmentDepartments:
-          type: array
-          items:
-            $ref: "#/components/schemas/GovernmentDepartment"
-          nullable: true
-        createdWhen:
-          type: string
-          format: date-time
-        order:
-          type: integer
-          format: int32
-      additionalProperties: false
-    GovernmentOppositionPostHolder:
-      type: object
-      properties:
-        member:
-          $ref: "#/components/schemas/MemberItem"
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-          nullable: true
-        layingMinisterName:
-          type: string
-          nullable: true
-        isPaid:
-          type: boolean
-      additionalProperties: false
-    GovernmentOppositionPostItem:
-      type: object
-      properties:
-        value:
-          $ref: "#/components/schemas/GovernmentOppositionPost"
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
           nullable: true
       additionalProperties: false
     GovernmentType:
@@ -1749,21 +1623,6 @@ components:
             $ref: "#/components/schemas/Link"
           nullable: true
       additionalProperties: false
-    PortraitCropEnum:
-      enum:
-        - 0
-        - 1
-        - 2
-        - 3
-      type: integer
-      format: int32
-    PostType:
-      enum:
-        - 0
-        - 1
-        - 2
-      type: integer
-      format: int32
     RegisteredInterest:
       type: object
       properties:
