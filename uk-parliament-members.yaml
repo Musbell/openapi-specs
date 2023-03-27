@@ -1,7 +1,11 @@
 openapi: 3.0.1
 info:
   title: Members API
-  description: An API which retrieves Members data.
+  description: |
+    An API which retrieves Members data.
+     ### Parameters
+      - page: The page parameter is used to retrieve paginated results.
+      - name: The name parameter is used to filter members with names containing the term specified
   contact:
     name: UK Parliament
     url: https://www.parliament.uk
@@ -19,7 +23,6 @@ paths:
       parameters:
         - name: Name
           in: query
-          description: Members where name contains term specified
           schema:
             type: string
         - name: Location
@@ -51,7 +54,6 @@ paths:
             format: int32
         - name: NameStartsWith
           in: query
-          description: Members with surname begining with letter(s) specified
           schema:
             type: string
         - name: Gender
@@ -118,7 +120,6 @@ paths:
       parameters:
         - name: name
           in: query
-          description: Members with names containing the term specified
           schema:
             type: string
         - name: dateToSearchFor
