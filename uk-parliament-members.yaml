@@ -111,53 +111,6 @@ paths:
                 $ref: "#/components/schemas/MemberMembersServiceSearchResult"
         "400":
           description: Bad Request
-  /api/Members/SearchHistorical:
-    get:
-      tags:
-        - Members
-      description: Returns a list of members of the Commons or Lords
-      operationId: getListOfAllMembers
-      parameters:
-        - name: name
-          in: query
-          schema:
-            type: string
-        - name: dateToSearchFor
-          in: query
-          description: Members that were an active member of the Commons or Lords on the date specified
-          required: true
-          schema:
-            type: string
-            format: date-time
-        - name: skip
-          in: query
-          description: The number of records to skip from the first, default is 0
-          schema:
-            type: integer
-            format: int32
-            default: 0
-        - name: take
-          in: query
-          description: The number of records to return, default is 20. Maximum is 20
-          schema:
-            type: integer
-            format: int32
-            default: 20
-      responses:
-        "200":
-          description: Success
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/MemberMembersServiceSearchResult"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MemberMembersServiceSearchResult"
-            text/json:
-              schema:
-                $ref: "#/components/schemas/MemberMembersServiceSearchResult"
-        "400":
-          description: Bad Request
   /api/Members/{id}:
     get:
       tags:
