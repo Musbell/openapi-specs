@@ -528,7 +528,6 @@ paths:
           description: Bad Request
         "404":
           description: Not Found
-  /api/Members/{id}/Synopsis:
     get:
       tags:
         - Members
