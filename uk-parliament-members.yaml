@@ -30,6 +30,11 @@ paths:
           description: Members where postcode or geographical location matches the term specified
           schema:
             type: string
+        - name: PostTitle
+          in: query
+          description: Members which have held the post specified
+          schema:
+            type: string
         - name: PartyId
           in: query
           description: Members which are currently affiliated with party with party ID
@@ -66,6 +71,17 @@ paths:
           description: Members who are current or former members
           schema:
             type: boolean
+        - name: PolicyInterestId
+          in: query
+          description: Members with specified policy interest
+          schema:
+            type: integer
+            format: int32
+        - name: Experience
+          in: query
+          description: Members with specified experience
+          schema:
+            type: string
         - name: skip
           in: query
           description: The number of records to skip from the first, default is 0
