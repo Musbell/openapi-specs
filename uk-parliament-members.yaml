@@ -528,36 +528,6 @@ paths:
           description: Bad Request
         "404":
           description: Not Found
-    get:
-      tags:
-        - Members
-      description: Return synopsis of member by ID
-      operationId: getMemberSynopsisById
-      parameters:
-        - name: id
-          in: path
-          description: Synopsis of Member by ID specified
-          required: true
-          schema:
-            type: integer
-            format: int32
-      responses:
-        "200":
-          description: Success
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/StringItem"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/StringItem"
-            text/json:
-              schema:
-                $ref: "#/components/schemas/StringItem"
-        "400":
-          description: Bad Request
-        "404":
-          description: Not Found
   /api/Members/{id}/Voting:
     get:
       tags:
@@ -635,41 +605,6 @@ paths:
           description: Bad Request
         "404":
           description: Not Found
-  /api/Parties/StateOfTheParties/{house}/{forDate}:
-    get:
-      tags:
-        - Parties
-      description: Returns current state of parties
-      operationId: getCurrentPartyStates
-      parameters:
-        - name: house
-          in: path
-          description: State of parties in Commons or Lords.
-          required: true
-          schema:
-            $ref: "#/components/schemas/House"
-        - name: forDate
-          in: path
-          description: State of parties for the date specified
-          required: true
-          schema:
-            type: string
-            format: date-time
-      responses:
-        "200":
-          description: Success
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/PartySeatCountMembersServiceSearchResult"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PartySeatCountMembersServiceSearchResult"
-            text/json:
-              schema:
-                $ref: "#/components/schemas/PartySeatCountMembersServiceSearchResult"
-        "400":
-          description: Bad Request
   /api/Parties/LordsByType/{forDate}:
     get:
       tags:
@@ -697,34 +632,6 @@ paths:
             text/json:
               schema:
                 $ref: "#/components/schemas/LordsByTypeMembersServiceSearchResult"
-        "400":
-          description: Bad Request
-  /api/Parties/GetActive/{house}:
-    get:
-      tags:
-        - Parties
-      description: Returns a list of current parties with at least one active member.
-      operationId: getCurrentPartiesWithActiveMembers
-      parameters:
-        - name: house
-          in: path
-          description: Current parties by house
-          required: true
-          schema:
-            $ref: "#/components/schemas/House"
-      responses:
-        "200":
-          description: Success
-          content:
-            text/plain:
-              schema:
-                $ref: "#/components/schemas/PartyMembersServiceSearchResult"
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PartyMembersServiceSearchResult"
-            text/json:
-              schema:
-                $ref: "#/components/schemas/PartyMembersServiceSearchResult"
         "400":
           description: Bad Request
 tags:
@@ -1528,101 +1435,6 @@ components:
           type: boolean
           readOnly: true
       additionalProperties: false
-    PartyItem:
-      type: object
-      properties:
-        value:
-          $ref: "#/components/schemas/Party"
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
-    PartyMembersServiceSearchResult:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: "#/components/schemas/PartyItem"
-          nullable: true
-        totalResults:
-          type: integer
-          format: int32
-        resultContext:
-          type: string
-          nullable: true
-        skip:
-          type: integer
-          format: int32
-        take:
-          type: integer
-          format: int32
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
-    PartySeatCount:
-      type: object
-      properties:
-        male:
-          type: integer
-          format: int32
-          nullable: true
-        female:
-          type: integer
-          format: int32
-          nullable: true
-        nonBinary:
-          type: integer
-          format: int32
-          nullable: true
-        total:
-          type: integer
-          format: int32
-        party:
-          $ref: "#/components/schemas/Party"
-      additionalProperties: false
-    PartySeatCountItem:
-      type: object
-      properties:
-        value:
-          $ref: "#/components/schemas/PartySeatCount"
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
-    PartySeatCountMembersServiceSearchResult:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: "#/components/schemas/PartySeatCountItem"
-          nullable: true
-        totalResults:
-          type: integer
-          format: int32
-        resultContext:
-          type: string
-          nullable: true
-        skip:
-          type: integer
-          format: int32
-        take:
-          type: integer
-          format: int32
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
     RegisteredInterest:
       type: object
       properties:
@@ -1707,18 +1519,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Staff"
-          nullable: true
-        links:
-          type: array
-          items:
-            $ref: "#/components/schemas/Link"
-          nullable: true
-      additionalProperties: false
-    StringItem:
-      type: object
-      properties:
-        value:
-          type: string
           nullable: true
         links:
           type: array
